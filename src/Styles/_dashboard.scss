@@ -1,0 +1,123 @@
+.nav_image {
+  img {
+    width: 3rem;
+  }
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+}
+.nav_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  svg {
+    width: 1rem;
+    transition: all 0.4s ease;
+  }
+}
+.logout {
+  padding: 0 1rem;
+  cursor: pointer;
+  &:hover {
+    svg {
+      fill: red;
+    }
+  }
+}
+.nav_menu {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+.nav_menu-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+.impact_card {
+  background-color: white;
+  box-shadow: 0px 1px 6px #0000001a;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.student-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    width: 1.2rem;
+    fill: #a2a2a6;
+  }
+}
+.learning_card {
+  background-color: white;
+  padding: 0.8rem;
+  border-radius: 5px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.l-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.ls-title {
+  font-size: 1rem;
+  color: #98989b;
+}
+.site-layout {
+  height: 100vh;
+}
+.impact_campaign-header {
+  display: flex;
+  justify-content: space-between;
+}
+.team-members {
+  padding: 1rem;
+  color: #7e849f;
+  display: flex;
+  font-size: 1.01rem;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  svg {
+    width: 1rem;
+    fill: #7e849f;
+  }
+}
+.members {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  align-items: center;
+  .member_img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  div {
+    color: #7e849f;
+  }
+  span {
+    color: white;
+    font-size: 1.1rem;
+    color: #c2c6d9;
+  }
+  & .member-body {
+    display: flex;
+    flex-direction: column;
+  }
+}

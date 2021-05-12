@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React , {useEffect} from 'react';
+import {Route,Switch} from 'react-router-dom';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import ProtectedRoute from './Components/ProtectedRoute';
+import Dashboard from './Components/Dashboard';
+import { ToastContainer} from 'react-toastify';
+import "./Styles/main.scss";
+import 'react-toastify/dist/ReactToastify.css';
+import { AutoSign } from './Store/Action/auth';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.Autosign();
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+      <Switch>
+      {/* <Route path="/" component={Dashboard} exact  /> */}
+      <Route path="/login" component={Login} exact  />
+      <Route path="/signup" component={Signup} exact  />
+      <Dashboard />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    Autosign:() => dispatch(AutoSign())
+  }
+}
+
+export default connect(null,mapDispatchToProps)(App);
