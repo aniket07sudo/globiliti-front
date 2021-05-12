@@ -2,7 +2,6 @@ import React , {useEffect} from 'react';
 import {Route,Switch} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import ProtectedRoute from './Components/ProtectedRoute';
 import Dashboard from './Components/Dashboard';
 import { ToastContainer} from 'react-toastify';
 import "./Styles/main.scss";

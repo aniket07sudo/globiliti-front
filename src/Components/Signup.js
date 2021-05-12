@@ -5,8 +5,11 @@ import {ReactComponent as Logo} from '../Assets/Logo.svg';
 import { ReactComponent as Illus } from '../Assets/illustration.svg';
 import { LoadingOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import {motion } from 'framer-motion';
 import {connect } from 'react-redux';
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
+import { PageAnimation } from '../Animations/pageAnimations';
+import {ContactForm,Photo } from '../Animations/login';
 
 class Signup extends Component {
 
@@ -124,12 +127,12 @@ class Signup extends Component {
 
     createAccount = () => {
         this.setState({ loading: true });
-        console.log(this.state.addUser);
+        
         let formData = {};
         for (let identifier in this.state.addUser) {
             formData[identifier] = this.state.addUser[identifier].value;
         }
-        console.log(formData);
+     
         axios.post("/signup", { ...formData })
             .then(res => {
                  toast.success('Account Created', {
@@ -154,9 +157,9 @@ class Signup extends Component {
                 config:this.state.addUser[key]
             })
         }
-        console.log(formElement);
+       
         return (
-            <div className="login_container auto_wrap">
+            <motion.div variants={PageAnimation} initial="hidden" exit="exit" animate="show" className="login_container auto_wrap">
                 {this.props.userId && <Redirect to="/impact" />}
 
                 <div className="login">
@@ -167,23 +170,23 @@ class Signup extends Component {
                         <div className="login_form">
                             <h1 className="head">Welcome To Globiliti!</h1>
                             <h3>Create Your School Account</h3>
-                            <div className="login_form-field">
+                            <motion.div variants={ContactForm} initial="hidden" exit="exit" animate="show" className="login_form-field">
                                 {formElement.map(form => (
-                                    <Input key={form.id} value={form.value} elementConfig={form.config.elementConfig} onchange={(event) => this.inputChangedHandler(event,form.id)} invalid={!form.config.valid} elementType={form.config.elementType} Touched={form.config.touched} />
+                                    <Input variants={ContactForm} key={form.id} value={form.value} elementConfig={form.config.elementConfig} onchange={(event) => this.inputChangedHandler(event,form.id)} invalid={!form.config.valid} elementType={form.config.elementType} Touched={form.config.touched} />
                                 ))}
                                 
-                            </div>
+                            </motion.div>
                             <button onClick={this.createAccount} className={!this.state.formValid ? 'login-btn disabled' : 'login-btn'} disabled={!this.state.formValid}>
                                 CREATE ACCOUNT&nbsp;{this.state.loading && <LoadingOutlined style={{ fontSize: 24 }} spin />}
                             </button>
                             <Link to="/login"><div className="new_acc">Already Register ? LOGIN</div></Link>
                         </div>
-                        <div className="login_illustration">
+                       <motion.div variants={Photo} initial="hidden" animate="show" className="login_illustration">
                             <Illus />
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         )
     }
 }

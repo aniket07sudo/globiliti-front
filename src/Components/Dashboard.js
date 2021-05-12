@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { Link, Route,Redirect,withRouter } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 import {  connect} from 'react-redux';
 import Oval from '../Assets/Oval.png';
 import {ReactComponent as Logout } from '../Assets/logout.svg';
@@ -9,7 +9,9 @@ import {ReactComponent as Logo} from '../Assets/Logo.svg';
 import {ReactComponent as CirPlus} from '../Assets/circleplus.svg';
 import Image1 from '../Assets/image1.jpeg';
 import ProtectedRoute from './ProtectedRoute';
-import { authLogout} from '../Store/Action/auth';
+import { authLogout } from '../Store/Action/auth';
+import { motion } from 'framer-motion';
+import {ContactForm } from '../Animations/login';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -36,13 +38,13 @@ class SiderDemo extends React.Component {
   };
 
   handleClick = e => {
-    console.log('click ', e);
+    
     this.setState({ current: e.key });
   };
 
   logout = () => {
     this.props.Logout();
-    console.log(this.props);
+ 
     this.props.history.push("/login");
     
   }
@@ -79,15 +81,15 @@ class SiderDemo extends React.Component {
             </Menu.Item>
           </Menu>
           <div className="divider"></div>
-          <div className="team-members-container">
-            <div className="team-members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
+          <motion.div variants={ContactForm} initial="hidden" animate="show" className="team-members-container">
+            <motion.div className="team-members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
                 {!this.state.collapsed && <span>Add Team Members</span>}
                 <CirPlus />
-            </div>
-            <div className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
+            </motion.div>
+            <motion.div variants={ContactForm} className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
             {!this.state.collapsed ? (
                     <>
-                    <img src={Oval} className="member_img" />
+                    <img src={Oval} className="member_img" alt="Pic" />
                 <div className="member-body">
                     <span>Chen Ying</span>
                     <div>Counselor</div>
@@ -95,13 +97,13 @@ class SiderDemo extends React.Component {
                 </>
                 
                 ) : 
-                <img src={Oval} className="member_img" />
+                <img src={Oval} className="member_img" alt="Pic" />
                 }
-            </div>
-            <div className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
+            </motion.div>
+            <motion.div variants={ContactForm} className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
             {!this.state.collapsed ? (
                     <>
-                    <img src={Oval} className="member_img" />
+                    <img src={Oval} className="member_img" alt="Pic" />
                 <div className="member-body">
                     <span>Chen Ying</span>
                     <div>Counselor</div>
@@ -109,13 +111,13 @@ class SiderDemo extends React.Component {
                 </>
                 
                 ) : 
-                <img src={Oval} className="member_img" />
+                <img src={Oval} className="member_img" alt="Pic" />
                 }
-            </div>
-            <div className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
+            </motion.div>
+            <motion.div variants={ContactForm} className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
             {!this.state.collapsed ? (
                     <>
-                    <img src={Oval} className="member_img" />
+                    <img src={Oval} className="member_img" alt="Pic" />
                 <div className="member-body">
                     <span>Chen Ying</span>
                     <div>Counselor</div>
@@ -123,13 +125,13 @@ class SiderDemo extends React.Component {
                 </>
                 
                 ) : 
-                <img src={Oval} className="member_img" />
+                <img src={Oval} className="member_img" alt="Pic" />
                 }
-            </div>
-            <div className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
+            </motion.div>
+            <motion.div variants={ContactForm} className="members" style={{justifyContent:this.state.collapsed ? 'center' : ''}}>
                 {!this.state.collapsed ? (
                     <>
-                    <img src={Oval} className="member_img" />
+                    <img src={Oval} className="member_img" alt="Pic" />
                 <div className="member-body">
                     <span>Chen Ying</span>
                     <div>Counselor</div>
@@ -137,11 +139,11 @@ class SiderDemo extends React.Component {
                 </>
                 
                 ) : 
-                <img src={Oval} className="member_img" />
+                <img src={Oval} className="member_img" alt="Pic" />
                 }
                 
-            </div>
-            </div> 
+            </motion.div>
+            </motion.div> 
         </Sider>
 
         
@@ -154,7 +156,7 @@ class SiderDemo extends React.Component {
             <div className="nav">
             <div className="nav_container">
             <div className="nav_image">
-            <img src={Image1} />
+            <img src={Image1} alt="Pic" />
             </div>
                 <div className="nav_menu">
                     <div className="nav_menu-title">

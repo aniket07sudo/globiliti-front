@@ -6,24 +6,27 @@ import Classcraft from '../Assets/classcraft.png';
 import Read from '../Assets/Readtome.png';
 import Discovery from '../Assets/Discovery.png';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import Oval from '../Assets/Oval.png';
+import styled from 'styled-components';
+import { motion} from 'framer-motion';
 import {ReactComponent as More} from '../Assets/more.svg';
 import {ReactComponent as Plus} from '../Assets/plus.svg';
 import {ReactComponent as Time} from '../Assets/Time.svg';
-import {ReactComponent as Path} from '../Assets/Path.svg';
+import { ReactComponent as Path } from '../Assets/Path.svg';
+import { PageAnimation} from '../Animations/pageAnimations';
+import { ContactForm} from '../Animations/login';
 
 const Impact = (props) => {
 
     return(
-        <div className="impact">
+        <Impactdiv variants={PageAnimation} initial="hidden" exit="exit" animate="show">
 
-            <div className="impact_campaign">
+            <motion.div variants={ContactForm} initial="hidden" animate="show" className="impact_campaign">
                 <div className="impact_campaign-header">
                     <span className="card-head">Impact Campaigns</span>
                     <div className="options"><Plus /><More /></div>
                 </div>
-                <div className="impact_card">
+                <motion.div variants={ContactForm} className="impact_card">
                 <div className="impact-card-container">
                     <h3>Reading Comprehension</h3>
                     <div className="status">
@@ -43,8 +46,8 @@ const Impact = (props) => {
                         </div>
                     </div>
                     </div>
-                </div>
-                <div className="impact_card">
+                </motion.div>
+                <motion.div variants={ContactForm} className="impact_card">
                 <div className="impact-card-container">
                     <h3>Career Development</h3>
                     <div className="status">
@@ -64,15 +67,15 @@ const Impact = (props) => {
                         </div>
                     </div>
                     </div>
-                </div>
+                </motion.div>
                 <div className="footer"><Plus /> Start New Campaign</div>
-            </div> 
-            <div className="impact_campaign">
+            </motion.div> 
+            <motion.div variants={ContactForm} initial="hidden" animate="show" className="impact_campaign">
                 <div className="impact_campaign-header">
                     <span className="card-head">Learning Tools</span>
                     <div className="options"><Plus /><More /></div>
                 </div>
-                <div className="learning_card">
+                <LearningCard variants={ContactForm}>
                     <div className="card-img">
                     <img src={Paragon} alt="Pic" />
                     </div>
@@ -80,8 +83,8 @@ const Impact = (props) => {
                        <div className="l-title">Paragon One</div>
                        <div className="ls-title">Creative thinking, +3 more</div>
                     </div>
-                </div>
-                <div className="learning_card">
+                </LearningCard>
+                <LearningCard variants={ContactForm}>
                     <div className="card-img">
                     <img src={Classcraft} alt="Pic" />
                     </div>
@@ -89,8 +92,8 @@ const Impact = (props) => {
                        <div className="l-title">Classcraft</div>
                        <div className="ls-title">Writing composition, +1 more</div>
                     </div>
-                </div>
-                <div className="learning_card">
+                </LearningCard>
+                <LearningCard variants={ContactForm}>
                     <div className="card-img">
                     <img src={Read} alt="Pic" />
                     </div>
@@ -98,8 +101,8 @@ const Impact = (props) => {
                        <div className="l-title">ReadToMe</div>
                        <div className="ls-title">Experimental Learning, +2 more</div>
                     </div>
-                </div>
-                <div className="learning_card">
+                </LearningCard>
+                <LearningCard variants={ContactForm}>
                     <div className="card-img">
                     <img src={Discovery} alt="Pic" />
                     </div>
@@ -107,15 +110,15 @@ const Impact = (props) => {
                        <div className="l-title">Discovery Education</div>
                        <div className="ls-title">Creative thinking, +10 more</div>
                     </div>
-                </div>
+                </LearningCard>
                 <div className="footer"><Plus />Add New Tool</div>
-            </div> 
-            <div className="impact_campaign">
+            </motion.div> 
+            <motion.div variants={ContactForm} initial="hidden" animate="show" className="impact_campaign">
                 <div className="impact_campaign-header">
                     <span className="card-head">Tool Pilots</span>
                     <div className="options"><Plus /><More /></div>
                 </div>
-                <div className="impact_card">
+                <ImpactCard variants={ContactForm}>
                 <div className="impact-card-container">
                     <h3>ReadToMe: Houde Pilot 1</h3>
                     <div className="status">
@@ -149,8 +152,8 @@ const Impact = (props) => {
                             pronounciation accuracy
                         </div>
                     </div>
-                </div>
-                <div className="impact_card">
+                </ImpactCard>
+                <ImpactCard variants={ContactForm}>
                 <div className="impact-card-container">
                     <h3>ReadToMe: Houde Pilot 2</h3>
                     <div className="status">
@@ -181,8 +184,8 @@ const Impact = (props) => {
                             experiential learning
                         </div>
                     </div>
-                </div>
-                <div className="impact_card">
+                </ImpactCard>
+                <ImpactCard variants={ContactForm}>
                 <div className="impact-card-container">
                     <h3>ReadToMe: Houde Pilot 2</h3>
                     <div className="status">
@@ -213,24 +216,48 @@ const Impact = (props) => {
                             experiential learning
                         </div>
                     </div>
-                </div>
-            </div> 
-            <div className="design">
-            <div className="impact_campaign-header">
+                </ImpactCard>
+            </motion.div> 
+            <motion.div variants={ContactForm} initial="hidden" animate="show" className="design">
+            <div className="impact_campaign-header" variants={ContactForm}>
                     <span className="card-head">Design Learning Pods</span>
                     <div className="options"><More /></div>
                 </div>
                 <div className="pod-area">
                     <Plus/> New Learning Pod
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </Impactdiv>
     )
 }
+
+const ImpactCard = styled(motion.div)`
+background-color: white;
+  box-shadow: 0px 1px 6px #0000001a;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+`;
+
+const LearningCard = styled(motion.div)`
+  background-color: white;
+  padding: 0.8rem;
+  border-radius: 5px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom:1rem;
+`;
+
+const Impactdiv = styled(motion.div)`
+ display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+`;
 const mapStateToProps = state => {
     return {
         userId:state.reducer.userId
     }
 }
+
 
 export default connect(mapStateToProps)(Impact);

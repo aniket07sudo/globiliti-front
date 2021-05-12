@@ -1,31 +1,32 @@
 import React , {useState} from 'react';
-import {ReactComponent as Eye} from '../Assets/Eye.svg';
+import { ReactComponent as Eye } from '../Assets/Eye.svg';
+import { motion} from 'framer-motion';
 
 const Input = (props) => {
 
     const [show,setShow] = useState(false)
     let inputElement = null;
     let inputclasses = ["bar"];
-    console.log(props.invalid,props.Touched);
+   
     if (props.invalid && props.Touched) {
         inputclasses.push("invalid")
 }
     switch(props.elementType) {
         case("input"):
         inputElement = (
-            <div className="group">
+            <motion.div className="group" variants={ props.variants}>
                 <label htmlFor={props.elementConfig.placeholder}>{props.elementConfig.placeholder}</label>
                 <div className="relative">
                 <input {...props.elementConfig} id={props.elementConfig.placeholder} value={props.value} required onChange={props.onchange} autoComplete="off" />
                     <span className={inputclasses.join(" ")}></span>
                 </div>
                 {props.invalid && props.Touched && <div className="form-warn">Required</div>}
-            </div>
+            </motion.div>
         )
         break;
         case("password"):
         inputElement = (
-            <div className="group">
+            <motion.div className="group" variants={props.variants}>
                 <label htmlFor={props.elementConfig.placeholder}>{props.elementConfig.placeholder}</label>
                 <div className="relative">
                 <div className="show-pass" onClick={() => setShow(!show)}><Eye style={{fill:show ? '#192451' :'#95a0ce'}} /></div>
@@ -34,7 +35,7 @@ const Input = (props) => {
                 </div>
                 {props.invalid && props.Touched && <div className="form-warn">*Password Must Contain 8 Characters</div>}
                 
-            </div>
+            </motion.div>
         )
         break;
         default:
